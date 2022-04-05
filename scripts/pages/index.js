@@ -1,7 +1,7 @@
 import {photographerFactory} from '../factories/photographer.js';
 
 export async function getPhotographers() {
-    const fetchData = await fetch('../data/photographers.json')
+    const fetchData = await fetch('https://theodotcom.github.io/FishEye/data/photographers.json')
     .then((response) => {
       return response.json()
     })
@@ -26,20 +26,20 @@ async function init() {
     // Récupère les datas des photographes
     const { photographers, media  } = await getPhotographers();
     const queryString = window.location.search; // "?id=243"
-    const searchParams = new URLSearchParams(queryString); // => id 
+    const searchParams = new URLSearchParams(queryString); // => id
 
     const photographerId = searchParams.get('id'); // ==> 243
     console.log('the rrrr : ', photographerId);
     const photographer = photographers.find(photographer => photographer.id === photographerId) // le même id que celui qui a été envoyé dans l'URL;
 
     media.forEach((media) => {
-      // Pour chaque média, on cherche l'id du photographe qui est égale a  media.photographerId 
+      // Pour chaque média, on cherche l'id du photographe qui est égale a  media.photographerId
       if(photographers.find(x => x.id === media.photographerId)) {
        const owner = photographers.find(x => x.id === media.photographerId)
-      
+
        owner.medias ? owner.medias.push(media) : owner['medias'] = [media]
 
-      // syntaxe basique 
+      // syntaxe basique
       // if(owner.medias) {
       //   owner.push(media)
       // } else {
