@@ -14,21 +14,19 @@
     </a>
 </header>
 <main id="main">
-    
-    <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-    </div>
 
-    <div class="select">
-       <h3>Trier Par</h3> 
+    <div class="photograph-header" aria-label="Photographer main infos"></div>
+
+    <div class="select" role="search">
+       <h3>Trier Par</h3>
         <select id="filterSelect">
-            <option value="">Date</option>
+            <option value="date">Date</option>
             <option value="title">Nom</option>
             <option value="popularity">Popularité</option>
         </select>
     </div>
 
-    <div class="photographer_info"></div>
+    <div class="photographer_info" aria-label="Photographers infos"></div>
 
    <!--Likes-->
     <div class="likeContainer">
@@ -39,10 +37,10 @@
     </div>
     <!--Modal-->
 
-    <div id="myModal" class="modal">
+    <div id="myModal" class="modal" aria-hidden="true" aria-describedby="carrousel" >
 
         <!-- The Close Button -->
-        <span class="close">&times;</span>
+        <button class="close" >&times; </button>
 
         <!-- Modal Content (The Image) -->
         <div class="modal-content">
@@ -50,8 +48,8 @@
         </div>
 
         <!-- Next/previous controls -->
-        <a class="prev">&#10094;</a>
-        <a class="next">&#10095;</a>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
 
         <!-- Modal Caption (Image Text) -->
         <div id="caption"></div>
@@ -106,7 +104,7 @@
             <label>Votre Message</label>
             <input/>
     </div>
-    <button class="contact_button">Envoyer</button>
+    <button class="contact_button1">Envoyer</button>
     </form>
 </div>
 </div>
