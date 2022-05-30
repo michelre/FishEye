@@ -1,24 +1,32 @@
-import {getNickname} from '../utils/index.js'
+import {getNickname} from '../utils/index.js';
+
+// Get medias for the caroussel
 
 export default function mediaFactory(data, photographerName) {
-    const picture = `Sample Photos/${getNickname(photographerName)}/${
-        data.image ? data.image : data.video
-    }`;
-    if (data.image) {
-        const img = document.createElement("img");
-        img.setAttribute("src", picture);
-        return img
-    } else if (data.video) {
-        const video = document.createElement("video");
-        const source = document.createElement("source");
-        source.setAttribute("src", picture);
-        source.setAttribute("type", "video/mp4");
-        video.appendChild(source);
-        video.addEventListener("click", function () {
-            source.setAttribute("play", true);
-        });
-        return video;
-    }
+  let htmlBlock;
+
+  const picture = `Sample Photos/${getNickname(photographerName)}/${
+    data.image ? data.image : data.video
+  }`;
+
+  if (data.image) {
+    htmlBlock = document.createElement('img');
+    htmlBlock.setAttribute('src', picture);
+  } else if (data.video) {
+    htmlBlock = document.createElement('video');
+    htmlBlock.controls = true;
+    const source = document.createElement('source');
+    source.setAttribute('src', picture);
+    source.setAttribute('type', 'video/mp4');
+    htmlBlock.appendChild(source);
+    htmlBlock.addEventListener('click', function() {
+      htmlBlock.setAttribute('play', true);
+    });
+  }
+
+  // Create caption
+  const caption = document.createElement('p');
+  caption.innerHTML = data.title;
+
+  return {htmlBlock, caption};
 }
-
-
